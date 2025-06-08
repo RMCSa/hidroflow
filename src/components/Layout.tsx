@@ -43,51 +43,84 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     logout();
     toast.success("Você foi desconectado com sucesso!");
     navigate("/");
-    handleMenuClose(); // Fecha o menu após o logout
+    handleMenuClose(); 
   };
 
   const handleDashboardNavigation = () => {
     navigate("/dashboard");
     handleMenuClose();
-  }
+  };
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <AppBar position="static" color="default" elevation={1}>
+      <AppBar
+        position="static"
+        color="inherit" // Alterado para inherit
+        elevation={1}
+        sx={{ backgroundColor: theme.palette.secondary.main }} // Usando azul profundo
+      >
         <Container maxWidth="lg">
           <Toolbar>
-            <WaterDropIcon color="primary" sx={{ mr: 1 }} />
+            <WaterDropIcon sx={{ mr: 1, color: theme.palette.common.white }} />{" "}
+            {/* Cor explícita para contraste */}
             <Typography
               variant="h6"
               component={Link}
               to="/"
-              sx={{ flexGrow: 1, textDecoration: "none", color: "inherit" }}
+              sx={{
+                flexGrow: 1,
+                textDecoration: "none",
+                color: theme.palette.common.white, // Cor explícita para contraste
+              }}
             >
               HidroFlow
             </Typography>
-
             {isMobile ? (
-              <IconButton component={Link} to="/" color="inherit" aria-label="Home">
+              <IconButton
+                component={Link}
+                to="/"
+                color="inherit" // Herdará branco do AppBar
+                aria-label="Home"
+              >
                 <HomeIcon />
               </IconButton>
             ) : (
-              <Button component={Link} to="/" color="inherit">
-                Home
+              <Button component={Link} to="/" color="inherit" sx={{ color: theme.palette.common.white }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 1,
+                  }}
+                >
+                  <HomeIcon />
+                  <span>Home</span>
+                </Box>
               </Button>
             )}
-
             {isAuthenticated && !isMobile && (
-              <Button component={Link} to="/dashboard" color="inherit">
-                Dashboard
+              <Button component={Link} to="/dashboard" color="inherit" sx={{ color: theme.palette.common.white }}>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 1,
+                  }}
+                >
+                  <DashboardIcon />
+                  <span>Dashboard</span>
+                </Box>
               </Button>
             )}
-
             {isAuthenticated ? (
               <>
                 {isMobile ? (
                   <>
                     <IconButton
-                      color="inherit"
+                      color="inherit" // Herdará branco
                       onClick={handleMenuOpen}
                       aria-label="Menu do Usuário"
                     >
@@ -100,20 +133,41 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       MenuListProps={{
                         "aria-labelledby": "basic-button",
                       }}
+                      slotProps={{ paper: { sx: { mt: 1.5 } } }}
                     >
-                      <MenuItem disabled>Olá, {user?.name}</MenuItem>
+                      <MenuItem disabled>
+                        <Typography variant="subtitle2">
+                          Olá, {user?.name}
+                        </Typography>
+                      </MenuItem>
                       <MenuItem onClick={handleDashboardNavigation}>
-                        <DashboardIcon sx={{ mr: 1 }} /> Dashboard
+                        <DashboardIcon
+                          sx={{ mr: 1, color: "text.secondary" }}
+                        />{" "}
+                        Dashboard
                       </MenuItem>
                       <MenuItem onClick={handleLogout}>
-                        <LogoutIcon sx={{ mr: 1 }} /> Sair
+                        <LogoutIcon
+                          sx={{ mr: 1, color: "text.secondary" }}
+                        />{" "}
+                        Sair
                       </MenuItem>
                     </Menu>
                   </>
                 ) : (
                   <>
-                    <Typography sx={{ mx: 2 }}>Olá, {user?.name}</Typography>
-                    <Button variant="outlined" onClick={handleLogout}>
+                    <Typography
+                      sx={{ mx: 2, color: theme.palette.common.white }}
+                    >
+                      Olá, {user?.name}
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      onClick={handleLogout}
+                      startIcon={<LogoutIcon />}
+                      sx={{ borderColor: theme.palette.common.white, color: theme.palette.common.white }}
+                    >
+                      {" "}
                       Sair
                     </Button>
                   </>
@@ -125,7 +179,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   <IconButton
                     component={Link}
                     to="/login"
-                    color="inherit"
+                    color="inherit" // Herdará branco
                     aria-label="Login"
                   >
                     <LoginIcon />
@@ -134,8 +188,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   <Button
                     component={Link}
                     to="/login"
-                    variant="contained"
-                    color="primary"
+                    variant="outlined" // Alterado para outlined
+                    color="inherit" // Herdará branco para borda e texto
                   >
                     Login / Registrar
                   </Button>

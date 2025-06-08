@@ -29,7 +29,7 @@ const StatusCard: React.FC<StatusCardProps> = ({
 
   return (
     <Paper
-      elevation={2}
+      elevation={2} 
       sx={{
         p: 2,
         display: "flex",
@@ -37,7 +37,9 @@ const StatusCard: React.FC<StatusCardProps> = ({
         height: "100%",
         borderLeft: 5,
         borderColor: borderColor || "primary.main",
-        ...sx,
+        borderRadius: theme.shape.borderRadius, 
+        boxShadow: theme.shadows[2], 
+        ...sx, 
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
@@ -45,12 +47,12 @@ const StatusCard: React.FC<StatusCardProps> = ({
           sx={{
             mr: 1.5,
             color: iconColor || borderColor || "primary.main",
-            fontSize: isMobile ? theme.typography.pxToRem(24) : theme.typography.pxToRem(32), // Ajuste o tamanho conforme necessário
-            display: 'flex', // Para alinhar o ícone caso ele tenha dimensões intrínsecas
-            alignItems: 'center' // Para alinhar o ícone caso ele tenha dimensões intrínsecas
+            fontSize: isMobile ? theme.typography.pxToRem(28) : theme.typography.pxToRem(32), 
+            display: 'flex', 
+            alignItems: 'center' 
           }}
         >
-          {icon}
+          {icon} {/* Ícone renderizado diretamente */}
         </Box>
         <Typography variant={isMobile ? "subtitle1" : "h6"} color="text.secondary" sx={{ fontWeight: isMobile ? 500 : 'normal' }}>
           {title}
@@ -60,10 +62,11 @@ const StatusCard: React.FC<StatusCardProps> = ({
         variant={isMobile ? "h5" : "h4"}
         component="p"
         sx={{
-          pl: isMobile ? 0 : "44px", // Ajuste do padding-left para mobile
+          pl: isMobile ? 0 : `calc(${theme.typography.pxToRem(32)} + ${theme.spacing(1.5)})`, 
           fontWeight: "bold",
-          textAlign: isMobile ? "center" : "left", // Centraliza em mobile
-          mt: isMobile ? 1 : 0,
+          textAlign: isMobile ? "center" : "left", 
+          mt: isMobile ? 1 : 0.5, 
+          lineHeight: 1.2, 
         }}
       >
         {value}
@@ -73,15 +76,15 @@ const StatusCard: React.FC<StatusCardProps> = ({
           variant="body2"
           color="text.secondary"
           sx={{
-            pl: isMobile ? 0 : "44px", // Ajuste do padding-left para mobile
+            pl: isMobile ? 0 : `calc(${theme.typography.pxToRem(32)} + ${theme.spacing(1.5)})`, 
             mt: 0.5,
-            textAlign: isMobile ? "center" : "left", // Centraliza em mobile
+            textAlign: isMobile ? "center" : "left", 
           }}
         >
           {subText}
         </Typography>
       )}
-      {children}
+      {children && <Box sx={{mt: 1}}>{children}</Box>}
     </Paper>
   );
 };

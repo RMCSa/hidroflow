@@ -67,15 +67,28 @@ const LoginPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        mt: 5,
+        alignItems: "flex-start", // Alinhar ao topo para melhor visualização com mt
+        mt: { xs: 4, sm: 8 }, // Margem superior responsiva
+        p: 2, // Padding para evitar que o Paper cole nas bordas em telas pequenas
       }}
     >
-      <Paper elevation={4} sx={{ p: 4, width: "100%", maxWidth: 400 }}>
+      <Paper 
+        elevation={0} // Remover elevação padrão, usaremos boxShadow
+        sx={(theme) => ({ 
+          p: { xs: 3, sm: 4 }, 
+          width: "100%", 
+          maxWidth: 420, // Aumentar um pouco o maxWidth
+          borderRadius: theme.shape.borderRadius,
+          boxShadow: theme.shadows[3], // Sombra mais suave do tema
+          border: `1px solid ${theme.palette.divider}`, // Borda sutil
+        })}
+      >
         <Tabs
           value={tabIndex}
           onChange={handleTabChange}
           centered
+          textColor="secondary" 
+          indicatorColor="secondary" 
           sx={{ mb: 3 }}
         >
           <Tab label="Login" />
@@ -83,7 +96,13 @@ const LoginPage = () => {
         </Tabs>
         {tabIndex === 0 && (
           <Box component="form" onSubmit={handleLogin} noValidate>
-            <Typography variant="h4" component="h1" gutterBottom align="center">
+            <Typography 
+              variant="h4" 
+              component="h1" 
+              gutterBottom 
+              align="center"
+              sx={{ fontWeight: "bold", color: "text.primary", mb: 2 }}
+            >
               Acessar sua Conta
             </Typography>
             <TextField
@@ -102,16 +121,23 @@ const LoginPage = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              color="primary" 
+              sx={{ mt: 3, mb: 2, py: 1.2 }}
               disabled={isLoading || !email}
             >
-              {isLoading ? <CircularProgress size={24} /> : "Entrar"}
+              {isLoading ? <CircularProgress size={24} color="inherit" /> : "Entrar"}
             </Button>
           </Box>
         )}
         {tabIndex === 1 && (
           <Box component="form" onSubmit={handleRegister} noValidate>
-            <Typography variant="h4" component="h1" gutterBottom align="center">
+            <Typography 
+              variant="h4" 
+              component="h1" 
+              gutterBottom 
+              align="center"
+              sx={{ fontWeight: "bold", color: "text.primary", mb: 2 }}
+            >
               Criar uma Conta
             </Typography>
             <TextField
@@ -140,10 +166,11 @@ const LoginPage = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              color="primary" 
+              sx={{ mt: 3, mb: 2, py: 1.2 }} 
               disabled={isLoading || !name || !email}
             >
-              {isLoading ? <CircularProgress size={24} /> : "Registrar"}
+              {isLoading ? <CircularProgress size={24} color="inherit" /> : "Registrar"}
             </Button>
           </Box>
         )}

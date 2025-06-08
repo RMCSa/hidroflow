@@ -7,10 +7,10 @@ const theme = createTheme({
       main: "#007bff",
     },
     secondary: {
-      main: "#6c757d",
+      main: "#1976D2", // Azul Profundo
     },
     success: {
-      main: "#28a745",
+      main: "#4CAF50", 
     },
     error: {
       main: "#dc3545",
@@ -19,10 +19,10 @@ const theme = createTheme({
       main: "#ffc107",
     },
     info: {
-      main: "#17a2b8",
+      main: "#673AB7", 
     },
     background: {
-      default: "#f0f2f5",
+      default: "#F8F9FA",
       paper: "#ffffff",
     },
   },
