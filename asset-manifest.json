@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/hidroflow/static/js/main.5b5e4d11.js",
+    "main.js": "/hidroflow/static/js/main.5930fedc.js",
     "index.html": "/hidroflow/index.html",
-    "main.5b5e4d11.js.map": "/hidroflow/static/js/main.5b5e4d11.js.map"
+    "main.5930fedc.js.map": "/hidroflow/static/js/main.5930fedc.js.map"
   },
   "entrypoints": [
-    "static/js/main.5b5e4d11.js"
+    "static/js/main.5930fedc.js"
   ]
 }
