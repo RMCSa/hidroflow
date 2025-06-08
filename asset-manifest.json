@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.js": "/hidroflow/static/js/main.5930fedc.js",
+    "main.js": "/hidroflow/static/js/main.4665bdc7.js",
+    "static/media/logo192.png": "/hidroflow/static/media/logo192.f459f2f74b7b90b5e698.png",
     "index.html": "/hidroflow/index.html",
-    "main.5930fedc.js.map": "/hidroflow/static/js/main.5930fedc.js.map"
+    "main.4665bdc7.js.map": "/hidroflow/static/js/main.4665bdc7.js.map"
   },
   "entrypoints": [
-    "static/js/main.5930fedc.js"
+    "static/js/main.4665bdc7.js"
   ]
 }
