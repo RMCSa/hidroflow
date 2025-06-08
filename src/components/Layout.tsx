@@ -16,7 +16,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { toast } from "react-hot-toast";
-import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import logoSrc from '../img/logo192.png';
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -43,7 +43,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     logout();
     toast.success("Você foi desconectado com sucesso!");
     navigate("/");
-    handleMenuClose(); 
+    handleMenuClose();
   };
 
   const handleDashboardNavigation = () => {
@@ -61,7 +61,17 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       >
         <Container maxWidth="lg">
           <Toolbar>
-            <WaterDropIcon sx={{ mr: 1, color: theme.palette.common.white }} />{" "}
+            <Box
+              component="img"
+              src={logoSrc}
+              alt="HidroFlow Logo"
+              sx={{
+                mr: 1,
+                width: 30,
+                height: 30,
+                filter: "brightness(0) invert(1)",
+              }}
+            />{" "}
             {/* Cor explícita para contraste */}
             <Typography
               variant="h6"
@@ -79,13 +89,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <IconButton
                 component={Link}
                 to="/"
-                color="inherit" // Herdará branco do AppBar
                 aria-label="Home"
+                sx={{ color: theme.palette.common.white }} 
               >
                 <HomeIcon />
               </IconButton>
             ) : (
-              <Button component={Link} to="/" color="inherit" sx={{ color: theme.palette.common.white }}>
+              <Button
+                component={Link}
+                to="/"
+                color="inherit"
+                sx={{ color: theme.palette.common.white }}
+              >
                 <Box
                   sx={{
                     display: "flex",
@@ -100,8 +115,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </Button>
             )}
             {isAuthenticated && !isMobile && (
-              <Button component={Link} to="/dashboard" color="inherit" sx={{ color: theme.palette.common.white }}>
-
+              <Button
+                component={Link}
+                to="/dashboard"
+                color="inherit"
+                sx={{ color: theme.palette.common.white }}
+              >
                 <Box
                   sx={{
                     display: "flex",
@@ -123,6 +142,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       color="inherit" // Herdará branco
                       onClick={handleMenuOpen}
                       aria-label="Menu do Usuário"
+                      sx={{
+                        color: theme.palette.common.white, // Cor explícita para contraste
+                      }}
                     >
                       <AccountCircleIcon />
                     </IconButton>
@@ -136,7 +158,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       slotProps={{ paper: { sx: { mt: 1.5 } } }}
                     >
                       <MenuItem disabled>
-                        <Typography variant="subtitle2">
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            fontWeight: "bold",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxWidth: "100px",
+                          }}
+                        >
                           Olá, {user?.name}
                         </Typography>
                       </MenuItem>
@@ -147,9 +178,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         Dashboard
                       </MenuItem>
                       <MenuItem onClick={handleLogout}>
-                        <LogoutIcon
-                          sx={{ mr: 1, color: "text.secondary" }}
-                        />{" "}
+                        <LogoutIcon sx={{ mr: 1, color: "text.secondary" }} />{" "}
                         Sair
                       </MenuItem>
                     </Menu>
@@ -157,7 +186,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 ) : (
                   <>
                     <Typography
-                      sx={{ mx: 2, color: theme.palette.common.white }}
+                      sx={{
+                        mx: 2,
+                        color: theme.palette.common.white,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxWidth: "200px",
+                      }}
                     >
                       Olá, {user?.name}
                     </Typography>
@@ -165,7 +201,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       variant="outlined"
                       onClick={handleLogout}
                       startIcon={<LogoutIcon />}
-                      sx={{ borderColor: theme.palette.common.white, color: theme.palette.common.white }}
+                      sx={{
+                        borderColor: theme.palette.common.white,
+                        color: theme.palette.common.white,
+                      }}
                     >
                       {" "}
                       Sair
@@ -179,8 +218,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   <IconButton
                     component={Link}
                     to="/login"
-                    color="inherit" // Herdará branco
                     aria-label="Login"
+                    sx={{
+                      color: theme.palette.common.white, 
+                    }}
                   >
                     <LoginIcon />
                   </IconButton>
@@ -189,9 +230,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     component={Link}
                     to="/login"
                     variant="outlined" // Alterado para outlined
-                    color="inherit" // Herdará branco para borda e texto
+                    startIcon={<LoginIcon />}
+                    sx={{
+                      ml: 2,
+                      borderColor: theme.palette.common.white,
+                      color: theme.palette.common.white,
+                    }}
                   >
-                    Login / Registrar
+                    Acessar
                   </Button>
                 )}
               </>

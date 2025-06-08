@@ -6,7 +6,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
 import SpeedIcon from "@mui/icons-material/Speed";
-import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import logoSrc from '../img/logo192.png';
 
 const HomePage = () => {
   const { isAuthenticated } = useAuthStore();
@@ -51,7 +51,7 @@ const HomePage = () => {
           overflow: "hidden", // Para gradientes ou imagens de fundo no futuro
         }}
       >
-        <WaterDropIcon sx={{ fontSize: 60, color: "primary.main", mb: 2 }} />
+        <Box component="img" src={logoSrc} alt="HidroFlow Logo" sx={{ width: 60, height: 75, mb: 2 }} />
         <Typography
           variant="h2"
           component="h1"
@@ -134,23 +134,29 @@ const HomePage = () => {
         </Typography>
         <Stack
           spacing={4}
+          useFlexGap // Adicionado para melhor comportamento do spacing com flexWrap
           justifyContent="center"
           alignItems="center"
           sx={{
-            flexDirection: { xs: "column", sm: "row" },
+            flexDirection: "row", // Alterado para ser sempre row
             flexWrap: "wrap", // Permitir quebra de linha em telas menores
             width: "100%",
+            // justifyContent: "center", // O justifyContent já está no Stack pai
           }}
         >
           {desenvolvedores.map((dev, index) => (
             <Stack
               key={index}
               alignItems="center"
-              sx={{
+              sx={(theme) => ({ // Convertido para função para usar theme.spacing
                 textAlign: "center",
-                width: { xs: "80%", sm: "40%", md: "auto" }, // Ajuste para melhor distribuição
+                width: {
+                  xs: `calc(50% - ${theme.spacing(2)})`, // 2 por linha em xs
+                  sm: `calc(50% - ${theme.spacing(2)})`, // 2 por linha em sm
+                  md: "auto"
+                },
                 p: 2, // Espaçamento interno
-              }}
+              })}
             >
               <Avatar
                 src={dev.avatar}
