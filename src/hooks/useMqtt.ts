@@ -69,7 +69,8 @@ export const useMqtt = (topicId: string) => {
         }
       }
     };
-  }, [topicId]); // Re-conecta se o topicId mudar
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topicId]); 
 
   const connectMqtt = () => {
     setMqttStatus("Conectando...");

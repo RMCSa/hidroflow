@@ -15,7 +15,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SpaIcon from "@mui/icons-material/Spa";
 import CircleIcon from "@mui/icons-material/Circle";
-import WaterIcon from "@mui/icons-material/Water";
 import { Plant } from "../../types";
 import { useMqtt } from "../../hooks/useMqtt";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";

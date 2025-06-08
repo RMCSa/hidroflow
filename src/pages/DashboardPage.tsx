@@ -56,7 +56,8 @@ const DashboardPage = () => {
 
   useEffect(() => {
     fetchPlants();
-  }, [user]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ user]);
 
   const handleAddPlant = async (e: React.FormEvent) => {
     e.preventDefault();
