@@ -4,7 +4,7 @@ import Paho from "paho-mqtt";
 
 // --- Constantes e Configurações ---
 const MQTT_BROKER_WEBSOCKET = "wss://broker.emqx.io:8084/mqtt";
-const UNIQUE_TOPIC_PREFIX_WEB = "hidroflow/seu_id_unico"; // ATENÇÃO: MUDE "seu_id_unico"
+const UNIQUE_TOPIC_PREFIX_WEB = "hidroflow/hf123"; 
 const ESP_OFFLINE_TIMEOUT = 40000; // 40 segundos
 
 // Tipos para clareza
